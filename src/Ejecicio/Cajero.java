@@ -17,9 +17,9 @@ public class Cajero implements Runnable{
 
 	@Override
 	public void run() {
-		System.out.println("Cajero" + Thread.currentThread().getName()+" Atiende al cliente "+cliente.getId() + " tiempo --> "+cliente.getTiempoCaja() ); 
+		System.out.println("CAJERO atencion INICIO: Cliente "+cliente.getId() + " tiempo de caja --> "+cliente.getTiempoCaja()+"\t hilo "+Thread.currentThread().getName() ); 
 			esperarSegundos(cliente.getTiempoCaja());
-		System.out.println("Cajero" +Thread.currentThread().getName()+" Finaliza su atencion al cliente "+cliente.getId());
+		System.out.println("Cajero atencion    FIN: Cliente "+cliente.getId() +"\t hilo "+Thread.currentThread().getName());
 
 		Cliente.clientesTotales.desencolar();
 	}

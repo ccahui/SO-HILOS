@@ -14,22 +14,25 @@ public class Main {
 		Cliente cliente;
 		int tiempoCaja;
 		int tiempoProducto;
+		
 		for(int i = 0;i < nClientes; i++) {
-			tiempoCaja = random(1,5);
-			tiempoProducto = random(2,5);
-			cliente = new Cliente(i,tiempoProducto,tiempoCaja);
+			tiempoCaja = random(4,6);
+			tiempoProducto = random(1,3);
+			
+			cliente = new Cliente(i,tiempoCaja,tiempoProducto);
 			array.add(cliente);
 		}
 		
-		ExecutorService executorProducto = Executors.newFixedThreadPool(nClientes); 
+		ExecutorService executorProducto = Executors.newFixedThreadPool(nClientes);
+		
 		ExecutorService executorCaja = Executors.newFixedThreadPool(nCajas);
 		
 		for(Cliente aux:array) {
 			ElegirProducto elegirProducto = new ElegirProducto(aux);
 			executorProducto.execute(elegirProducto);
 		}
-		executorProducto.shutdown();
 		
+		executorProducto.shutdown();
 		while(!executorProducto.isTerminated() ) {
 			
 			if(!Cliente.clientesTotales.isEmpty()) {
@@ -44,6 +47,7 @@ public class Main {
 		return valor;
 	}
 	public static void esperarSegundos(int segundos) {	
+
 		try {
 			Thread.sleep(segundos*1000);
 		} catch (InterruptedException e) {

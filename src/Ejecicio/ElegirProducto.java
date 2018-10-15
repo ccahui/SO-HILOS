@@ -18,17 +18,18 @@ public class  ElegirProducto implements Runnable{
 	@Override
 	public void run() {
 		
-		System.out.println("Eleccion de Productos" + Thread.currentThread().getName()+" Eligiendo Cliente "+cliente.getId() + " tiempo --> "+cliente.getTiempoProducto()); 
+		System.out.println("ELECCION de Producto INICIO: Cliente "+cliente.getId() + " tiempo de eleccion--> "+cliente.getTiempoProducto()+"\t hilo "+ Thread.currentThread().getName() ); 
 			esperarSegundos(cliente.getTiempoProducto());
-		System.out.println("Eleccion de Productos" +Thread.currentThread().getName()+" Finaliza eleccion Cliente "+cliente.getId());
+		System.out.println("ELECCION de    Producto FIN: Cliente "+cliente.getId());
 		
+		//RECURSO QUE SE ESTA COMPARTIENDO
 		Cliente.clientesTotales.encolar(cliente);
 	}
+	
 	public void esperarSegundos(int segundos) {	
 		try {
 			Thread.sleep(segundos*1000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
